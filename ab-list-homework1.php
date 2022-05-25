@@ -12,14 +12,14 @@ if ($page < 1) {
     header('Location:?page=1');
     exit;
 }
-$aaaa=1;
+$aaaa = 1;
 $t_sql = "SELECT COUNT(1) FROM address_book";
 echo $t_sql;
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0]; // 總筆數
 echo $totalRows;
-echo "one:".isset($aaaa);
+echo "one:" . isset($aaaa);
 
-echo "two:".empty($aaaa);
+echo "two:" . empty($aaaa);
 
 //(PDO::FETCH_NUM)[0];索引式陣列
 
@@ -54,13 +54,13 @@ echo 'Location:?page=$totalPages';
 
                 <ul class="pagination">
 
-                  
-                        <li class=" d-flex page-item <?= $page == 1 ? 'disabled' : '' ?>">
-                            <a class="page-link pt-2 " href="?page=1 ">
-                                <i class="fa-solid fa-angles-left "></i>
-                            </a>
-                        </li>
-               
+
+                    <li class=" d-flex page-item <?= $page == 1 ? 'disabled' : '' ?>">
+                        <a class="page-link pt-2 " href="?page=1 ">
+                            <i class="fa-solid fa-angles-left "></i>
+                        </a>
+                    </li>
+
 
 
                     <li class="d-flex page-item <?= $page == 1 ? 'disabled' : '' ?>">
@@ -124,7 +124,7 @@ echo 'Location:?page=$totalPages';
             <?php foreach ($rowss as $r) : ?>
                 <tr>
                     <td>
-                        <a href="#"><i class="fa-solid fa-trash-can">
+                        <a href="#" onclick="trashCanClicked(event); return false;"><i class="fa-solid fa-trash-can">
                                 <?php echo $r['sid'] ?>
                             </i></a>
                     </td>
@@ -148,4 +148,17 @@ echo 'Location:?page=$totalPages';
 </div>
 
 <?php include __DIR__ . '/parts/scripts.php' ?>
+<script>
+    function trashCanClicked(event) {
+        // console.log(event.currentTarget);
+        // console.log(event.target);
+        const a_tag = event.currentTarget;
+        const upfound = a_tag.closest('tr');//往上找到tr
+        console.log(upfound);
+        upfound.remove();
+    }
+</script>
+
+
+
 <?php include __DIR__ . '/parts/html-foot.php' ?>

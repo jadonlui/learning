@@ -9,6 +9,7 @@ require __DIR__ . '/parts/connect_db.php';
 
 $sql="INSERT INTO `address_book`(`name`, `email`, `mobile`, `birthday`, `address`, `created_at`) VALUES (?,?,?,?,?,NOW())";// ? 佔位字元
 
+//只要是user input 的就use->prepare execute 
 $stmt=$pdo->prepare($sql);
 $stmt->execute([
     "李lqwe's pen",
